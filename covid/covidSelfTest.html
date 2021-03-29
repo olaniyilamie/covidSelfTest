@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title>COVID SELF TEST</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+			<link href="bootstrap.css" type="text/css" rel="stylesheet">
+			<link rel="stylesheet" type="text/css" href="icons/css/all.min.css">
+			<style type="text/css">
+				#title{
+					font-weight:bolder ;
+				}
+				#coughcol{
+					font-weight:bold;
+				}
+				#coughrow{
+					padding-top: 3em;
+				}
+				button{
+						margin-top: 3.5em;					
+				}
+
+				@media all and (max-width:320px){
+					#title{
+						font-weight: normal;
+						font-size: 1em; 
+					}
+					#coughcol{
+						font-weight: normal;
+					}
+
+				}
+				@media all and (max-width:768px){
+					#coughrow{
+						padding-top: 0px;
+					}
+					button{
+						margin-top: 0px;					
+					}
+				}
+			</style>
+		</head>
+		<body>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-12 px-0">
+						<p class="text-center alert alert-danger text-dark" id="title">Please complete this short survey for an hint on your covid-19 status</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<img src="image6.jfif" class="img-fluid">
+					</div>
+					<div class="col-md-6" id="coughcol"> 
+						<div class="row" id="coughrow">
+							<div class="col-12">
+								<label> Are you coughing?</label>
+							</div><div class="col-12">
+								<select id="cough" class="form-control">
+									<option value="">Please Select</option>
+									<option value="yes" >Yes</option>
+									<option value="no" >No</option>
+								</select>
+							</div>
+						</div>
+						<div class="row py-4">
+							<div class="col-12">
+								<label> Did you travel out of Nigeria within the last 6 months?</label>
+							</div>
+							<div class="col-12">
+								<select id="stay" class="form-control">
+									<option value="">Please Select</option>
+									<option value="yes" >Yes</option>
+									<option value="no" >No</option>
+								</select>
+							</div>
+							<div class="testResult"></div>
+						</div>
+						
+						<button  type="submit" style="font-weight: bold" class="btn-block"  onclick="
+							var Cough =document.getElementById('cough').value;
+							var Stay =document.getElementById('stay').value;
+								if((Cough=='yes') || (Stay=='yes')){
+									document.getElementById('testResult').innerHTML='Please go for test ASAP !';
+									document.getElementById('testResult').style='color:red;';
+								}else if ((Cough=='no') && (Stay=='no')) {
+									document.getElementById('testResult').innerHTML='Mask up and Continue Staying Safe';
+									document.getElementById('testResult').style='color:green;';
+								}else if ((Cough=='no') && (Stay=='') || (Cough=='') && (Stay=='no')) {
+									document.getElementById('testResult').innerHTML='Please select the second option';
+									document.getElementById('testResult').style='color:black;';
+								}else{
+								 	document.getElementById('testResult').innerHTML='Please make a selection';
+								 	document.getElementById('testResult').style='color:black;';
+								}
+
+							">DIAGNOSE
+						</button>
+
+					</div>
+				</div>
+
+				<div id="testResult" class="text-center font-weight-bold pt-4"> </div>
+			</div>
+		</body>
+		
